@@ -3,11 +3,13 @@ package handler
 import (
 	"net/http"
 
+	"github.com/tiagolua/gonow.git/schemas"
+
 	"github.com/gin-gonic/gin"
 )
 
 func UpdateEndOpeningHandler(ctx *gin.Context) {
-	request := UpdateOpeningRequest{}
+	request := UpdateProductRequest{}
 
 	ctx.BindJSON(&request)
 

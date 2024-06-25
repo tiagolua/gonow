@@ -3,6 +3,8 @@ package config
 import (
 	"os"
 
+	"github.com/tiagolua/gonow.git/schemas"
+
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
@@ -38,7 +40,7 @@ func InitializeSQLite() (*gorm.DB, error) {
 
 	// Migrate the Schema
 
-	err = db.AutoMigrate(&schemas.Opening{})
+	err = db.AutoMigrate(&schemas.Product{})
 	if err != nil {
 		logger.Errorf("sqlite automigration error: %v", err)
 		return nil, err
