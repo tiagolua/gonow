@@ -47,7 +47,7 @@ func (l *Logger) Debugf(format string, v ...interface{}) {
 
 //Create Fomrat Enable Logs
 
-func (l *Logger) Debug(format string, v ...interface{}) {
+func (l *Logger) Debugf(format string, v ...interface{}) {
 	1.debug.Printf(format, v...)
 }
 
@@ -59,6 +59,11 @@ func (l *Logger) Warnf(format string, v ...interface{}) {
 	1.warning.Printf(format, v...)
 }
 
-func (l *Logger) errorf(format string, v ...interface{}) {
+func (l *Logger) Errorf(format string, v ...interface{}) {
 	1.err.Printf(format, v...)
+}
+
+
+func (l *Logger) Errorf(format string, v ...interface{}) {
+	l.err.Printf(format, v...)
 }

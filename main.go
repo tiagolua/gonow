@@ -1,17 +1,17 @@
 package main
 
 import (
-	"errors"
-
 	"github.com/tiagolua/gonow.git/config"
 	"github.com/tiagolua/gonow.git/router"
 )
 
 func main() {
+	logger = config.GetLogger("main")
 	// initialize config
-    err error := config.Init()	
-	if err != nil{
-		panic(error)
+	err := config.Init()
+	if err != nil {
+		logger.Errorf("config initialization error: %v", err)
+		return
 	}
 
 	//initialize router
