@@ -27,5 +27,6 @@ func DeleteEndOpeningHandler(ctx *gin.Context) {
 		sendError(ctx, http.StatusInternalServerError, fmt.Sprintf("error deleting opening with id: %s", id))
 		return
 	}
+
 	sendSucess(ctx, "delete-Opening", opening)
 }

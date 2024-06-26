@@ -9,7 +9,7 @@ import (
 )
 
 func UpdateEndOpeningHandler(ctx *gin.Context) {
-	request := UpdateProductRequest{}
+	request := CreateOpeningRequest{}
 
 	ctx.BindJSON(&request)
 
@@ -21,10 +21,10 @@ func UpdateEndOpeningHandler(ctx *gin.Context) {
 
 	id := ctx.Query("id")
 	if id == "" {
-		sendError(ctx, errParamIsRequired("id", "queryParameter").Error())
+		sendError(ctx, http.StatusBadRequest, errParamIsRequired("id", "queryParameter").Error())
 		return
 	}
-	opening := schemas.Opening{}
+	opening := schemas.Product{}
 
 	if err := db.First(&opening, id).Error; err != nil {
 		sendError(ctx, http.StatusNotFound, "opening not found")
@@ -45,8 +45,8 @@ func UpdateEndOpeningHandler(ctx *gin.Context) {
 		opening.Location = request.Location
 	}
 
-	if request.Remote != "" {
-		opening.Remote = request.Remote
+	if request.Remote != nil {
+		opening.Remote = *request.Remote
 	}
 
 	if request.Link != "" {

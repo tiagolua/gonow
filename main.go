@@ -5,6 +5,10 @@ import (
 	"github.com/tiagolua/gonow.git/router"
 )
 
+var (
+	logger *config.Logger
+)
+
 func main() {
 	logger = config.GetLogger("main")
 	// initialize config
