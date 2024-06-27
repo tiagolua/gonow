@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/tiagolua/gonow.git/schemas"
 )
 
 func CreatEndOpeningHandler(ctx *gin.Context) {
@@ -12,12 +13,12 @@ func CreatEndOpeningHandler(ctx *gin.Context) {
 	ctx.BindJSON(&request)
 
 	if err := request.Validate(); err != nil {
-		logger.Errorf("validation error: %v", err.error())
-		sendErrorf(ctx, http.StatusBadRequest, err.error())
+		logger.Errorf("validation error: %v", err.Error())
+		sendError(ctx, http.StatusBadRequest, err.Error())
 		return
 	}
 
-	opening := schemas.Opening{
+	opening := schemas.Product{
 		Role:     request.Role,
 		Company:  request.Company,
 		Location: request.Location,
@@ -27,7 +28,7 @@ func CreatEndOpeningHandler(ctx *gin.Context) {
 	}
 
 	if err := db.Create(&opening).Error; err != nil {
-		logger.Errorf("error creating opening: %v", err.error())
+		logger.Errorf("error creating opening: %v", err.Error())
 		sendError(ctx, http.StatusInternalServerError, "error creating on database")
 		return
 	}

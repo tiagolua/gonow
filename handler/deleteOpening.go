@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/tiagolua/gonow.git/schemas"
 )
 
 func DeleteEndOpeningHandler(ctx *gin.Context) {
@@ -14,7 +15,7 @@ func DeleteEndOpeningHandler(ctx *gin.Context) {
 		return
 	}
 
-	opening := schemas.Opening{}
+	opening := schemas.Product{}
 
 	if err := db.First(&opening, id).Error; err != nil {
 		sendError(ctx, http.StatusNotFound, fmt.Sprintf("opening with id: %s not found", id))
@@ -28,5 +29,5 @@ func DeleteEndOpeningHandler(ctx *gin.Context) {
 		return
 	}
 
-	sendSucess(ctx, "delete-Opening", opening)
+	sendSuccess(ctx, "delete-Opening", opening)
 }

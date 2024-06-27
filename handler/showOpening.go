@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/tiagolua/gonow.git/schemas"
 )
 
 func ShowEndOpeningHandler(ctx *gin.Context) {
@@ -12,11 +13,11 @@ func ShowEndOpeningHandler(ctx *gin.Context) {
 		sendError(ctx, http.StatusBadRequest, errParamIsRequired("id", "queryParameter").Error())
 		return
 	}
-	opening := schemas.Opening{}
+	opening := schemas.Product{}
 	if err := db.First(&opening, id).Error; err != nil {
 		sendError(ctx, http.StatusNotFound, "opening not found")
 		return
 	}
 
-	sendSucess(ctx, "show-opening", opening)
+	sendSuccess(ctx, "show-opening", opening)
 }

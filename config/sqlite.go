@@ -17,7 +17,7 @@ func InitializeSQLite() (*gorm.DB, error) {
 
 	_, err := os.Stat(dbPath)
 	if os.IsNotExist(err) {
-		logger.info("database file not found, crating...")
+		logger.Info("database file not found, creating...")
 		err = os.MkdirAll("./db", os.ModePerm)
 		if err != nil {
 			return nil, err
@@ -34,7 +34,7 @@ func InitializeSQLite() (*gorm.DB, error) {
 
 	db, err := gorm.Open(sqlite.Open(dbPath), &gorm.Config{})
 	if err != nil {
-		logger.ErrorF("sqlite opening error: %v", err)
+		logger.Errorf("sqlite opening error: %v", err)
 		return nil, err
 	}
 

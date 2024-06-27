@@ -64,5 +64,6 @@ func (r *UpdateOpeningRequest) Validate() error {
 	if r.Role != "" || r.Company != "" || r.Location != "" || r.Remote != nil || r.Link != "" || r.Salary > 0 {
 		return nil
 	}
+	// If none of field were provides, response must be false
 	return fmt.Errorf("At least one valide field must be provide")
 }
